@@ -15,8 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from wishlist.views import show_xml
+from wishlist.views import show_json
+from wishlist.views import show_json_by_id
+from wishlist.views import show_xml_by_id
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('wishlist/', include('wishlist.urls')),
+    path('xml/', show_xml, name='show_xml'),
+    path('json/', show_json, name='show_json'),
+    path('json/<int:id>', show_json_by_id, name='show_json_by_id'),
+    path('xml/<int:id>', show_xml_by_id, name='show_xml_by_id'),
 ]
