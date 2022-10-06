@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Welcome, {{nama}}!</a>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="{% url 'wishlist:logout' %}" class="btn btn-dark">Log out</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid">
+<h3 style="margin-top:20px; margin-left:20px; color:rgb(1, 112, 148)" class="font-monospace fw-semibold text-center">This is Your Wishlist</h3>
+
+<table class="table table-striped table-hover table-bordered">
+    <thead>
+    <tr>
+    <th>Nama Barang</th>
+    <th>Harga Barang</th>
+    <th>Deskripsi</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
+    {% for barang in list_barang %}
+    <tr>
+        <td>{{barang.nama_barang}}</td>
+        <td>{{barang.harga_barang}}</td>
+        <td>{{barang.deskripsi}}</td>
+    </tr>
+    </tbody>
+{% endfor %}
+</table>
+
+<h6 style="color:rgb(154, 154, 154)" class="font-monospace fw-semibold text-center">Sesi terakhir login: {{ last_login }}</h6>
+</div>
+
+<div class="submit-form text-center m-auto">
+    <div class="form-floating">
+        <input type="text" class="form-control" id="nama_barang" placeholder="Nama Barang" name="nama_barang">
+        <label for="nama_barang">Nama Barang</label>
+    </div>
+    <div class="form-floating">
+        <input type="text" class="form-control" id="harga_barang" placeholder="Harga Barang" name="harga_barang">
+        <label for="harga_barang">Harga Barang</label>
+    </div>
+    <div class="form-floating">
+        <input type="text" class="form-control" id="deskripsi" placeholder="Deskripsi Barang" name="deskripsi">
+        <label for="deskripsi">Deskripsi Barang</label>
+    </div>
+    <tr>  
+        <td></td>
+        <td><input type="submit" name="submit" value="Daftar"/></td>  
+    </tr>
+</div>
+
+{% endblock content %}
